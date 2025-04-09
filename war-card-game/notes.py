@@ -2,11 +2,11 @@
     #!for loop each type
     #!create dictionary for each key that has rank, type, and number
 #!randomize deck each round and split and append to both players
-#show card of starting player then show card of other player
-    #display last index of players deck
-    #evaluate the greate card
-        #compare deck[suite].get(rank)
-    #return both cards to player who won the evaluation
+#!show card of starting player then show card of other player
+    #!display last index of players deck
+    #!evaluate the greate card
+        #!compare deck[suite].get(rank)
+    #!return both cards to player who won the evaluation
 #if card rank of both players are ==: declare war
     #get first 4 indices of both decks
     #compare 4th index
