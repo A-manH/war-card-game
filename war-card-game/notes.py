@@ -11,4 +11,4 @@
     #get first 4 indices of both decks
     #compare 4th index
     #winner gets all cards appended to their deck
-#if deck of 1 player runs out declare other player winner
+#!if deck of 1 player runs out declare other player winner
