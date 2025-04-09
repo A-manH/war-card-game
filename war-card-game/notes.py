@@ -2,7 +2,6 @@
     #!for loop each type
     #!create dictionary for each key that has rank, type, and number
 #!randomize deck each round and split and append to both players
-#choose random player to start
 #show card of starting player then show card of other player
     #display last index of players deck
     #evaluate the greate card
