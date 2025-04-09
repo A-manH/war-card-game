@@ -1,7 +1,7 @@
 import random
+from tracemalloc import start
 
 deck = []
-print(deck)
 rank = 2
 
 def append_rank(card_rank):
@@ -20,8 +20,12 @@ for ranks in range(13):
         else:
             append_rank(rank)
     rank += 1
-print(deck)
-# shuffled_deck = list(deck.items())
-# random.shuffle(shuffled_deck)
-# print(shuffled_deck[:6])
-# print(shuffled_deck[6:])
+
+shuffled_deck = deck.copy()
+random.shuffle(shuffled_deck)
+
+player1 = [shuffled_deck[26:]]
+player2 = [shuffled_deck[:26]]
+players = (player1, player2)
+starting_player = players[random.randint(0, 1)]
+print(starting_player)
