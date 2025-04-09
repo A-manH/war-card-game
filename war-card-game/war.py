@@ -1,13 +1,11 @@
 import random
 
-deck = {}
+deck = []
+print(deck)
 rank = 2
 
 def append_rank(card_rank):
-    if str(rank) in deck:
-        deck[str(rank)].append(card_rank)
-    else:
-        deck.update({str(rank): [card_rank]})
+    deck.append({card_rank: rank})
 
 for ranks in range(13):
     for card in range(4):
@@ -22,8 +20,8 @@ for ranks in range(13):
         else:
             append_rank(rank)
     rank += 1
-
-shuffled_deck = list(deck)
-random.shuffle(shuffled_deck)
-print(dict((shuffled_deck)))
-
+print(deck)
+# shuffled_deck = list(deck.items())
+# random.shuffle(shuffled_deck)
+# print(shuffled_deck[:6])
+# print(shuffled_deck[6:])
