@@ -2,12 +2,6 @@ import random
 import time
 import msg
 
-class PlayerDeck:
-    def __init__(self, deck, name, wardeck=None):
-        self.deck = deck
-        self.name = name
-        self.wardeck = wardeck
-
 deck = []
 rank = 2
 
@@ -31,8 +25,8 @@ for ranks in range(13):
 shuffled_deck = deck.copy()
 random.shuffle(shuffled_deck)
 
-player_1 = PlayerDeck(shuffled_deck[:26], "P1")
-player_2 = PlayerDeck(shuffled_deck[26:], "P2")
+player_1 = Player(shuffled_deck[:26], "P1")
+player_2 = Player(shuffled_deck[26:], "P2")
 p1_deck = player_1.deck
 p2_deck = player_2.deck
 
@@ -80,13 +74,15 @@ while True:
 
         if p1_war_rank > p2_war_rank:
             player_1.deck.extend(player_2.wardeck)
-            del player_2.deck[4:]
+            del player_2.deck[:4]
             print("P1 won the war")
 
-        else:
+        elif p2_war_rank > p1_war_rank:
             player_2.deck.extend(player_1.wardeck)
-            del player_1.deck[4:]
+            del player_1.deck[:4]
             print("P2 won the war")
+        elif p1_war_rank == p2_war_rank:
+            print("Its a tie again!")
 
         print(f"P1{player_1.deck} \nP2{player_2.deck}\n\n")
         print(f"P1{player_1.wardeck} \nP2{player_2.wardeck}")
