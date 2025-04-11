@@ -7,8 +7,8 @@
     #!evaluate the greate card
         #!compare deck[suite].get(rank)
     #!return both cards to player who won the evaluation
-#if card rank of both players are ==: declare war
-    #get first 4 indices of both decks
-    #compare 4th index
-    #winner gets all cards appended to their deck
+#!if card rank of both players are ==: declare war
+    #!get first 4 indices of both decks
+    #!compare 4th index
+    #!winner gets all cards appended to their deck
 #!if deck of 1 player runs out declare other player winner

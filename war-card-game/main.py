@@ -1,29 +1,11 @@
 import random
 import time
 import msg
+from classes import Deck, Player
 
-deck = []
-rank = 2
-
-def append_rank(card_rank):
-    deck.append([card_rank, rank])
-
-for ranks in range(13):
-    for card in range(4):
-        if rank == 11:
-            append_rank("Jack")
-        elif rank == 12:
-            append_rank("Queen")
-        elif rank == 13:
-            append_rank("King")
-        elif rank == 14:
-            append_rank("Ace")
-        else:
-            append_rank(rank)
-    rank += 1
-
-shuffled_deck = deck.copy()
-random.shuffle(shuffled_deck)
+deck = Deck.new_deck()
+print(deck)
+shuffled_deck = Deck.shuffle(deck)
 
 player_1 = Player(shuffled_deck[:26], "P1")
 player_2 = Player(shuffled_deck[26:], "P2")
@@ -84,13 +66,13 @@ while True:
         elif p1_war_rank == p2_war_rank:
             print("Its a tie again!")
 
-        print(f"P1{player_1.deck} \nP2{player_2.deck}\n\n")
-        print(f"P1{player_1.wardeck} \nP2{player_2.wardeck}")
+        # print(f"P1{player_1.deck} \nP2{player_2.deck}\n\n")
+        # print(f"P1{player_1.wardeck} \nP2{player_2.wardeck}")
 
         print(f"P1: {len(p1_deck)} cards | P2: {len(p2_deck)} cards\n")
         time.sleep(5)
 
-    # round_pause(5)
+    round_pause(2)
 
     if len(p1_deck) == 0:
         msg.slowprint("P2 wins by a land slide. You suck P1!", space_speed=0)
