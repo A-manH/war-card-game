@@ -27,22 +27,12 @@ while True:
     print(f"P1: played {p1_card}...")
     print(f"P2: played {p2_card}...")
     if P1_WIN_TRADE:
-        winner_card = p1_deck.pop(0)
-        p1_deck.append(winner_card)
-
-        loser_card = p2_deck.pop()
-        p1_deck.append(loser_card)
-
+        player_1.steal_card()
         print("P1 won the trade")
         print(f"P1: {len(p1_deck)} cards | P2: {len(p2_deck)} cards\n")
 
     elif P2_WIN_TRADE:
-        winner_card = p2_deck.pop(0)
-        p2_deck.append(winner_card)
-
-        loser_card = p1_deck.pop()
-        p2_deck.append(loser_card)
-
+        player_2.steal_card(player_1)
         print("P2 won the trade")
         print(f"P1: {len(p1_deck)} cards | P2: {len(p2_deck)} cards\n")
 

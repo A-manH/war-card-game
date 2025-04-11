@@ -32,11 +32,18 @@ class Player:
         self.name = name
         self.wardeck = wardeck
     
-    def add_card(self):
-        pass
+    def steal_card(self, loser):
+        winner_card = self.pop(0)
+        self.append(winner_card)
 
-    def remove_card(self):
-        pass
+        loser_card = loser.pop()
+        self.append(loser_card)
     
+    def steal_hand(self, loser):
+        loser_hand = loser.deck[-4:]
+        del loser.deck[-4:]
+        self.deck.append(loser_hand)
+
+
     def deck_length(self):
-        pass
+        return len(self.deck)
