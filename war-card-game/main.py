@@ -4,7 +4,6 @@ import msg
 from classes import Deck, Player
 
 deck = Deck.new_deck()
-print(deck)
 shuffled_deck = Deck.shuffle(deck)
 
 player_1 = Player(shuffled_deck[:26], "P1")
@@ -17,8 +16,8 @@ while True:
     p2_card, p2_rank = p2_deck[0][0], p2_deck[0][1]
     player_1.wardeck = p1_deck[:4]
     player_2.wardeck = p2_deck[:4]
-    p1_war_rank = player_1.wardeck[0][1]
-    p2_war_rank = player_2.wardeck[0][1]
+    p1_war_rank = player_1.wardeck[-1][1]
+    p2_war_rank = player_2.wardeck[-1][1]
     P1_WIN_TRADE = p1_rank > p2_rank
     P2_WIN_TRADE = p2_rank > p1_rank
     I_DECLARE_WAR = p1_rank == p2_rank
@@ -27,7 +26,7 @@ while True:
     print(f"P1: played {p1_card}...")
     print(f"P2: played {p2_card}...")
     if P1_WIN_TRADE:
-        player_1.steal_card()
+        player_1.steal_card(player_2)
         print("P1 won the trade")
         print(f"P1: {len(p1_deck)} cards | P2: {len(p2_deck)} cards\n")
 
@@ -45,13 +44,11 @@ while True:
                 print(card[0], end=", ")
 
         if p1_war_rank > p2_war_rank:
-            player_1.deck.extend(player_2.wardeck)
-            del player_2.deck[:4]
+            player_1.steal_hand(player_2)
             print("P1 won the war")
 
         elif p2_war_rank > p1_war_rank:
-            player_2.deck.extend(player_1.wardeck)
-            del player_1.deck[:4]
+            player_2.steal_hand(player_1)
             print("P2 won the war")
         elif p1_war_rank == p2_war_rank:
             print("Its a tie again!")
@@ -60,7 +57,7 @@ while True:
         # print(f"P1{player_1.wardeck} \nP2{player_2.wardeck}")
 
         print(f"P1: {len(p1_deck)} cards | P2: {len(p2_deck)} cards\n")
-        time.sleep(5)
+        time.sleep(2)
 
     round_pause(2)
 

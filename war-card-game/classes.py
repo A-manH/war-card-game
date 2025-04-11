@@ -33,16 +33,15 @@ class Player:
         self.wardeck = wardeck
     
     def steal_card(self, loser):
-        winner_card = self.pop(0)
-        self.append(winner_card)
-
-        loser_card = loser.pop()
-        self.append(loser_card)
+        loser_card = loser.deck.pop(0)
+        self.deck.append(loser_card)
+        winner_card = self.deck.pop(0)
+        self.deck.append(winner_card)
     
     def steal_hand(self, loser):
-        loser_hand = loser.deck[-4:]
-        del loser.deck[-4:]
-        self.deck.append(loser_hand)
+        loser_hand = loser.deck[:4]
+        del loser.deck[:4]
+        self.deck.extend(loser_hand)
 
 
     def deck_length(self):
