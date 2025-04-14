@@ -1,5 +1,6 @@
 import random
 import time
+from xmlrpc.client import boolean
 import msg
 from classes import Deck, Player
 
@@ -52,6 +53,7 @@ while True:
             print("P2 won the war")
         elif p1_war_rank == p2_war_rank:
             print("Its a tie again!")
+            print(bool(0))
 
         # print(f"P1{player_1.deck} \nP2{player_2.deck}\n\n")
         # print(f"P1{player_1.wardeck} \nP2{player_2.wardeck}")
@@ -61,9 +63,9 @@ while True:
 
     round_pause(2)
 
-    if len(p1_deck) == 0:
+    if player_1.deck_length == 0:
         msg.slowprint("P2 wins by a land slide. You suck P1!", space_speed=0)
         break
-    if len(p2_deck) == 0:
+    if player_2.deck_length == 0:
         msg.slowprint("You can do better than that, P1. P2 wins *sigh")
         break

@@ -31,6 +31,7 @@ class Player:
         self.deck = deck
         self.name = name
         self.wardeck = wardeck
+        self.deck_length = len(deck)
     
     def steal_card(self, loser):
         loser_card = loser.deck.pop(0)
@@ -42,7 +43,3 @@ class Player:
         loser_hand = loser.deck[:4]
         del loser.deck[:4]
         self.deck.extend(loser_hand)
-
-
-    def deck_length(self):
-        return len(self.deck)
