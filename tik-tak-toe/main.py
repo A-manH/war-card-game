@@ -26,7 +26,10 @@
 
 from classes import Board, Player
 
-board = Board
+board = Board()
+player = Player()
 board.visualize()
 
-move = input("Play a move O/X: ")
+square = int(input("Pick a sqaure: "))
+move = input("Pick a move O/X: ")
+board.update(square, move)
