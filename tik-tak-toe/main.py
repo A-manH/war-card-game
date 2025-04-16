@@ -27,9 +27,11 @@
 from classes import Board, Player
 
 board = Board()
-player = Player()
+player_1 = Player("Player1")
+player_2 = Player("Player2")
 board.visualize()
 
-square = int(input("Pick a sqaure: "))
-move = input("Pick a move O/X: ")
-board.update(square, move)
+while True:
+    player_1.play_move(player_2)
+    player_2.play_move(player_1)
+    # board.update(square, move, player_1)
