@@ -44,4 +44,4 @@ while True:
     player_2.play_move(board, player_1, player_2)
     board.check_winner(player=player_2, opponenet=player_1)
 
-    
+    print("Game over")
