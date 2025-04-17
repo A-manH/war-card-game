@@ -25,6 +25,7 @@
 '''
 
 from classes import Board, Player
+import classes
 
 board = Board()
 player_1 = Player("Player1")
@@ -33,5 +34,6 @@ board.visualize()
 
 while True:
     player_1.play_move(player_2)
-    player_2.play_move(player_1)
-    # board.update(square, move, player_1)
+    board.check_winner(player_1, player_2)
+    # player_2.play_move(player_1)
+    # board.check_winner()
