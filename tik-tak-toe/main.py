@@ -33,7 +33,4 @@ player_2 = Player("Player2")
 board.visualize()
 
 while True:
-    player_1.play_move(player_2)
-    board.check_winner(player_1, player_2)
-    # player_2.play_move(player_1)
-    # board.check_winner()
+    player_1.play_move(board, player_2)

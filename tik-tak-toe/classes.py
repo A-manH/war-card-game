@@ -43,33 +43,37 @@ class Board():
         playing_board[square] = move
         self.visualize()
 
-    def check_winner(self, player_1, player_2):
+    def check_winner(self, player):
         solution_1 = playing_board[:3]
         solution_2 = playing_board[3:6]
         solution_3 = playing_board[6:9]
         horizontal_win = [solution_1, solution_2, solution_3]
 
-        solution_4 = [i for i in range(0, 7, 3)]
-        solution_5 = [i for i in range(1, 8, 3)]
-        solution_6 = [i for i in range(2, 9, 3)]
+        solution_4 = playing_board[:7:3]
+        solution_5 = playing_board[1:8:3]
+        solution_6 = playing_board[2:9:3]
         vertical_win = [solution_4, solution_5, solution_6]
 
-        solution_7 = [i for i in range(0, 9, 4)]
-        solution_8 = [i for i in range(2, 8, 2)]
-        diagonal_win = [solution_4, solution_5, solution_6]
+        solution_7 = playing_board[:9:4]
+        solution_8 = playing_board[2:7:2]
+        diagonal_win = [solution_7, solution_8]
 
         for win in (horizontal_win, vertical_win, diagonal_win):
             for solution in win:
                 if all(i == "X" for i in solution):
-                    print("Solution found!")
-
-                    if player_1.move == "X":
+                    print("Solution found!", end=" ")
+                    if player.move == "X":
+                        print(f"Winner is {player.name}!")
+                        player.score += 1
+                    self.new_board()
 
                 elif all(i == "O" for i in solution):
-                    print("Solution found!")
+                    print("Solution found!", end=" ")
+                    if player.move == "O":
+                        print(f"Winner is {player.name}!")
+                        player.score += 1
 
-                else:
-                    pass
+                    self.new_board()
 
     def reset(self):
         self.new_board()
@@ -81,10 +85,11 @@ class Player():
     def __init__(self, name, move="X/O"):
         self.name = name
         self.move = None
+        self.score = 0
         players.append(self)
 
 
-    def play_move(self, opponent=None):
+    def play_move(self, board, opponent):
         square = int(input(f"{self.name}, pick a sqaure: "))
         while True:
             move = input(f"{self.name}, play {self.move or 'X/O'}: ").upper()
@@ -96,5 +101,6 @@ class Player():
                     print("Opponent is playing O, play X")
             else:
                 self.move = move
+                board.check_winner(self)
                 Board().update(square, move)
                 break
