@@ -43,7 +43,7 @@ class Board():
         playing_board[square] = move
         self.visualize()
 
-    def check_winner(self, player):
+    def check_winner(self, player, opponenet):
         solution_1 = playing_board[:3]
         solution_2 = playing_board[3:6]
         solution_3 = playing_board[6:9]
@@ -61,24 +61,15 @@ class Board():
         for win in (horizontal_win, vertical_win, diagonal_win):
             for solution in win:
                 if all(i == "X" for i in solution):
-                    print("Solution found!", end=" ")
-                    if player.move == "X":
-                        print(f"Winner is {player.name}!")
+                    if player.move == "X" or player.move == "O":
                         player.score += 1
-                    self.new_board()
-
-                elif all(i == "O" for i in solution):
-                    print("Solution found!", end=" ")
-                    if player.move == "O":
-                        print(f"Winner is {player.name}!")
-                        player.score += 1
-
-                    self.new_board()
+                        print(f"Solution found! Winner is {player.name}!")
+                        print(f"Score is: {player.score} - {opponenet.score}")
+                        self.new_board()
 
     def reset(self):
         self.new_board()
         for p in players:
-            #clear players self.move
             p.move = None
 
 class Player():
@@ -101,6 +92,6 @@ class Player():
                     print("Opponent is playing O, play X")
             else:
                 self.move = move
-                board.check_winner(self)
                 Board().update(square, move)
+                board.check_winner(self)
                 break

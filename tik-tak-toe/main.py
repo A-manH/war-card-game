@@ -24,13 +24,24 @@
     5. Clear board and restart game
 '''
 
+from ast import Num
+from xmlrpc.client import boolean
 from classes import Board, Player
 import classes
 
 board = Board()
 player_1 = Player("Player1")
 player_2 = Player("Player2")
+classes.players = [player_1, player_2]
 board.visualize()
 
 while True:
-    player_1.play_move(board, player_2)
+    print("Welcome to tik-tac-toe!")
+    print(f"\t {player_1.name} V.S. {player_2.name}")
+
+    player_1.play_move(board, player_2, player_1)
+    board.check_winner(player=player_1, opponenet=player_2)
+    player_2.play_move(board, player_1, player_2)
+    board.check_winner(player=player_2, opponenet=player_1)
+
+    
