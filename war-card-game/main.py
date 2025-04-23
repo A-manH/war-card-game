@@ -1,6 +1,5 @@
 import random
 import time
-from xmlrpc.client import boolean
 import msg
 from classes import Deck, Player
 
